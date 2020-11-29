@@ -8,11 +8,14 @@ router.get('/', (req,res) => {
 });
 
 router.post('/user/create', UserControl.create);
+router.get('/user/get/id/:id', UserControl.getById);
+router.get('/user/get/all', UserControl.getAll);
+router.get('/user/get/favorites/:id', UserControl.getUserFavorite);
+router.get('/user/get/curriculum/:id', UserControl.getUserCurriculum);
 router.patch('/user/update/:id', UserControl.update);
 router.delete('/user/delete', UserControl.delete);
-router.get('/user/get/id/:id', UserControl.getId);
-router.get('/user/get/all', UserControl.getAll);
-router.get('/user/get/verify/:email/:password', UserControl.verifyUser);
+
+// router.get('/user/get/verify/:email/:password', UserControl.verifyUser);
 
 router.post('/lessons/create', LessonControl.create);
 router.patch('/lessons/update/:id', LessonControl.update);
