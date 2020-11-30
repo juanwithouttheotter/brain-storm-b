@@ -5,17 +5,23 @@ exports.create = async ({ body }, res) => {
     const User = new db.User(body);
     User.save()
         .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: User._id,
-                message: 'User created!'
-            }).end()
+            return res
+                .status(201)
+                .json({
+                    success: true,
+                    id: User._id,
+                    message: 'User created!'
+                })
+                .end()
         })
         .catch(err => {
-            return res.status(400).json({
-                error,
-                message: 'User not created',
-            }).end()
+            return res
+                .status(400)
+                .json({
+                    err,
+                    message: 'User not created'
+                })
+                .end()
         });
 }
 
@@ -23,7 +29,9 @@ exports.getById = async (req, res) => {
     await db.User.findOne({ _id: req.params.id },
         (err, user) => {
             if (err) {
-                return res.status(400).json({ success: false, error: err })
+                return res
+                    .status(400)
+                    .json({ success: false, error: err })
                     .end()
             }
             if (!user.length) {
@@ -36,7 +44,8 @@ exports.getById = async (req, res) => {
                 .status(200)
                 .json({ success: true, data: user })
                 .end()
-        }).catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
 }
 
 exports.getAll = async (req, res) => {
@@ -57,7 +66,8 @@ exports.getAll = async (req, res) => {
             .status(200)
             .json({ success: true, data: user })
             .end()
-    }).catch(err => console.log(err));
+    })
+        .catch(err => console.log(err));
 }
 
 exports.getUserFavorite = async (req, res) => {
@@ -80,7 +90,8 @@ exports.getUserFavorite = async (req, res) => {
                 .status(200)
                 .json({ success: true, data: userFavorite })
                 .end()
-        }).catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
 }
 
 exports.getUserCurriculum = async (req, res) => {
@@ -103,7 +114,8 @@ exports.getUserCurriculum = async (req, res) => {
                 .status(200)
                 .json({ success: true, data: userCurriculum })
                 .end()
-        }).catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
 }
 
 exports.update = async (req, res) => {
@@ -138,7 +150,8 @@ exports.update = async (req, res) => {
                         })
                         .end()
                 })
-        });
+        })
+        .catch(err => console.log(err));
 }
 
 exports.delete = async (req, res) => {
