@@ -15,7 +15,8 @@ app.use(routes);
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/brainstorm', { 
     useNewUrlParser: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology: true
 });
 
 app.listen(PORT, () => {console.log(`App is listening to Port ${PORT}`)});

@@ -20,6 +20,7 @@ const UserSchema = new Schema({
         match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
     password: {
+        type: String,
         required: "Password is requried",
         trim: true,
         validate: [({ length }) => length >= 8, "Password should be 8 characters or more"]
