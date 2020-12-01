@@ -25,11 +25,11 @@ router.get('/curriculum/get/lessons/:id', CurriculumControl.getLessons);
 router.patch('curriculum/update/:id', CurriculumControl.update);
 router.delete('curriculum/delete/:id', CurriculumControl.delete);
 
-router.post('/lessons/create', LessonControl.create);
-router.patch('/lessons/update/:id', LessonControl.update);
-router.delete('/lessons/delete/:id', LessonControl.delete);
-router.get('/lessons/get/id/:id', LessonControl.getId);
-router.get('/lessons/get/all', LessonControl.getAll);
-router.get('/lessons/get/createdby/:id', LessonControl.getCreatedBy);
+router.post('/lesson/create', LessonControl.create);
+router.get('/lesson/get/id/:id', LessonControl.getById);
+router.get('/lesson/get/all', LessonControl.getAll);
+router.get('/lesson/get/creator/:id', LessonControl.getLessonCreator);
+router.patch('/lesson/update/:id', LessonControl.update);
+router.delete('/lesson/delete/:id', LessonControl.delete);
 
 module.exports = router;
