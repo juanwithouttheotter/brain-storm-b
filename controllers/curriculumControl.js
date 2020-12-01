@@ -19,7 +19,7 @@ exports.create = async ({ body }, res) => {
                 .status(400)
                 .json({
                     err,
-                    message: 'User not created'
+                    message: 'Curriculum not created'
                 })
                 .end()
         });
@@ -187,5 +187,38 @@ exports.update = async (req, res) => {
                         .end()
                 })
         })
+        .catch(err => console.log(err));
+}
+
+exports.delete = async (req, res) => {
+    await db.Curriculum.findOneAndDelete({ _id: req.params.id }, 
+        (err, curriculum) => {
+        if (err) {
+            return res
+                .status(400)
+                .json({
+                    success: false,
+                    error: err
+                })
+                .end()
+        }
+        if (!curriculum) {
+            return res
+                .status(404)
+                .json({
+                    success: false,
+                    error: `curriculum not found`
+                })
+                .end()
+        }
+        return res
+            .status(400)
+            .json({
+                success: true,
+                message: `This curriculum was successfully deleted!`,
+                data: curriculum
+            })
+            .end()
+    })
         .catch(err => console.log(err));
 }
